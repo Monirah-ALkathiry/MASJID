@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1.5dp"
+    android:background="@drawable/border_style"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="8dp">
+
+            <!--  <ImageView
+
+                  android:id="@+id/MosqueImage"
+                  android:layout_width="90dp"
+                  android:layout_height="90dp"
+                  android:layout_gravity="end"
+                  android:layout_marginStart="0.5dp"
+                  android:layout_marginTop="0.5dp"
+                  android:layout_weight="1"
+                  android:contentDescription="@string/MosqueImage"
+                  android:hardwareAccelerated="false"
+                  android:largeHeap="true"
+                  android:padding="2dp"
+                  android:background="@drawable/image_shape"
+                  android:scaleType="fitCenter"-->
+
+
+            <com.github.siyamed.shapeimageview.RoundedImageView
+                android:id="@+id/MosqueImage"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                app:siRadius="6dp"
+                app:siBorderWidth="2dp"
+                app:siBorderColor="@color/white"
+                app:siSquare="true"
+                android:layout_gravity="start"
+                android:layout_marginStart="0.5dp"
+                android:layout_marginTop="0.5dp" />
+
+            <LinearLayout
+                android:id="@+id/Top"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_toEndOf="@+id/MosqueImage"
+                >
+                <TextView
+                    android:id="@+id/MosqueName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin=".5dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:padding="0.5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="0.5dp"
+                    android:paddingEnd="0.5dp"
+                    android:text="@string/Text_name_Tag"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:breakStrategy="balanced"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:id="@+id/Distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|fill_vertical"
+                    android:layout_marginBottom=".5dp"
+                    android:gravity="start"
+                    android:padding="0.5dp"
+                    android:text="@string/MosqueDistance"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp"
+
+                    android:layout_weight="1"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_toEndOf="@+id/MosqueImage"
+                android:layout_below="@+id/Top">
+
+                <TextView
+                    android:id="@+id/MosqueInfo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:paddingBottom="5dp"
+                    android:singleLine="true"
+                    android:text="@string/MosqueInfo"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:maxLines="1"
+
+
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/District"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/MosqueDistrict"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    tools:ignore="RtlHardcoded"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

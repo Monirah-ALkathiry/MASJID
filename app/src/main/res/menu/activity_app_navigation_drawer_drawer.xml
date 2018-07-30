@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/login"
+            android:icon="@drawable/sign_in"
+            android:title="@string/login" >
+        </item>
+
+        <item
+            android:id="@+id/logOut"
+            android:icon="@drawable/sign_out"
+            android:title="@string/logOut">
+        </item>
+
+
+        <item
+            android:id="@+id/ic_praytime"
+            android:icon="@drawable/ic_praytime"
+            android:title="@string/praytime">
+        </item>
+
+
+        <item
+            android:id="@+id/ic_masijed"
+            android:icon="@drawable/mosque_gbk"
+            android:title="@string/ic_masijed">
+        </item>
+
+
+       <!-- <item
+            android:id="@+id/ic_Dawa"
+            android:icon="@drawable/ic_activity"
+            android:title="@string/Dawa">
+        </item>-->
+    </group>
+
+
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/info"
+                android:icon="@drawable/about"
+                android:title="@string/info">
+            </item>
+
+            <item
+                android:id="@+id/contactUs"
+                android:icon="@drawable/messages"
+                android:title="@string/contactUs">
+            </item>
+            <item
+                android:id="@+id/ic_favorit"
+                android:icon="@drawable/fav"
+                android:title="@string/favorit">
+            </item>
+
+
+            <item
+                android:id="@+id/aboutApp"
+                android:icon="@drawable/icons"
+                android:title="@string/aboutApp">
+            </item>
+
+        </menu>
+    </item>
+
+</menu>

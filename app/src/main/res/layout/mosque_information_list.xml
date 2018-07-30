@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutInfo"
+    android:orientation="vertical"
+    android:background="@color/lightGry">
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="right"
+        tools:ignore="RtlHardcoded">
+
+        <TableRow android:layout_marginBottom="3.5dp" >
+
+            <TextView
+                android:id="@+id/Mosque_Type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/MosqueType"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/MosqueType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+
+
+        </TableRow>
+
+
+
+        <TableRow android:layout_marginBottom="3.5dp" >
+
+
+            <TextView
+                android:id="@+id/Mosque_Region"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/MosqueRegion"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/MosqueRegion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+
+
+        </TableRow>
+
+
+        <TableRow android:layout_marginBottom="3.5dp" >
+
+            <TextView
+                android:id="@+id/City_Village"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/CityVillage"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/CityVillage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+
+
+
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="3.5dp" >
+            <TextView
+                android:id="@+id/District_Tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/District"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/District"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+
+
+
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="3.5dp" >
+
+            <TextView
+                android:id="@+id/Street_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/StreetName"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/StreetName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+        </TableRow>
+
+
+        <TableRow android:layout_marginBottom="3.5dp" >
+
+            <TextView
+                android:id="@+id/Imam_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ImamName"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/ImamName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+        </TableRow>
+        <TableRow android:layout_marginBottom="3.5dp" >
+
+            <TextView
+                android:id="@+id/Khateeb_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/KhateebName"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/KhateebName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+        </TableRow>
+
+
+        <TableRow android:layout_marginBottom="3.5dp" >
+
+            <TextView
+                android:id="@+id/Moathen_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/MoathenName"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/MoathenName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+
+
+        </TableRow>
+        <TableRow android:layout_marginBottom="3.5dp" >
+            <TextView
+                android:id="@+id/Observer_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ObserverName"
+                android:background="@drawable/button_shape"
+                android:padding="18dip"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/ObserverName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Null"
+                android:textColor="@color/black"
+                android:padding="18dip"
+                android:background="@drawable/list_shape"
+                android:textSize="14sp"/>
+
+
+        </TableRow>
+    </TableLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:id="@+id/first_Tab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/lightgray"
+        tools:ignore="UselessParent">
+
+
+        <!--    <SearchView
+                android:id="@+id/Search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="5dp"
+                android:hint="ادخل كلمة البحث">
+            </SearchView>
+            -->
+
+        <EditText
+            android:id="@+id/TestSeach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="25"
+
+            android:layout_gravity="center"
+            android:hint="@string/InsertImamName"
+            android:layout_marginTop="20dp"
+            android:ellipsize="start"
+            android:gravity="right"
+            android:inputType="textPersonName"
+            android:drawableLeft="@android:drawable/ic_search_category_default"
+            android:background="@drawable/edit_text_style"
+            tools:ignore="RtlHardcoded" />
+
+
+        <ScrollView
+            android:id="@+id/layout"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal|vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:scrollbarStyle="outsideInset"
+            android:fillViewport="true"
+            android:layout_marginBottom="80dip">
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalView"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal|vertical"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="80dip">
+
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="right"
+                    tools:ignore="RtlHardcoded">
+
+                    <TableRow  android:layout_marginBottom="3.5dp">
+
+
+
+                        <TextView
+                            android:background="@drawable/button_shape"
+
+                            android:id="@+id/simpleTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="18dip"
+                            android:text="@string/MosqueRegion"
+                            android:textColor="#fff"
+                            android:textSize="14sp" />
+
+                        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                            android:id="@+id/myspinner"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="8dp"
+                            android:spinnerMode="dialog"/>
+
+                    </TableRow>
+
+
+
+                    <TableRow android:layout_marginBottom="3.5dp" >
+
+
+
+                        <TextView
+                            android:background="@drawable/button_shape"
+                            android:id="@+id/simpleTextView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="18dip"
+                            android:text="@string/CityVillage"
+                            android:textColor="#fff"
+                            android:textSize="14sp"/>
+
+                        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                            android:layout_marginTop="8dp"
+                            android:id="@+id/spinnerCities"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:spinnerMode="dialog"/>
+
+                    </TableRow>
+
+
+                    <TableRow android:layout_marginBottom="3.5dp" >
+
+
+                        <TextView
+
+                            android:id="@+id/simpleTextView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_shape"
+                            android:padding="18dip"
+                            android:text="@string/District"
+                            android:textColor="#fff"
+                            android:textSize="14sp" />
+
+                        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                            android:layout_marginTop="8dp"
+                            android:id="@+id/spinnerDistricts"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:spinnerMode="dialog"/>
+                    </TableRow>
+
+
+
+                    <TableRow android:layout_marginBottom="3.5dp" >
+
+
+
+                        <TextView
+
+                            android:id="@+id/Mosque"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_shape"
+                            android:padding="18dip"
+                            android:text="@string/MosqueType"
+                            android:textColor="#fff"
+                            android:textSize="14sp" />
+
+                        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                            android:layout_marginTop="8dp"
+                            android:id="@+id/spinnerMosque"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:spinnerMode="dialog"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </HorizontalScrollView>
+        </ScrollView>
+    </LinearLayout>
+
+
+</RelativeLayout>

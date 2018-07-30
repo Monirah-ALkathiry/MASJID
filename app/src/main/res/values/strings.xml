@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">مساجد</string>
+    <string name="title_activity_mosque_map">خريطة</string>
+    <string name="title_activity_app_navigation_drawer">مساجد</string>
+
+    <string name="navigation_drawer_open">فتح</string>
+    <string name="navigation_drawer_close">غلق</string>
+
+    <string name="action_settings">الإعدادات</string>
+
+    <string name="title_dawa">المناشط</string>
+
+    <!-- -->
+    <string name="advanced_Search">البحث المتقدم</string>
+    <!-- -->
+
+    <!--Menu Drawer-->
+    <string name="login">تسجيل الدخول</string>
+    <string name="logOut">تسجيل الخروج</string>
+    <string name="info">عن الوزارة</string>
+    <string name="praytime">أوقات الصلاة</string>
+    <string name="contactUs">اتصل بنا</string>
+    <string name="ic_masijed">المساجد</string>
+    <string name="Dawa">المناشط</string>
+    <string name="aboutApp"> عن التطبيق</string>
+    <string name="favorit">المفضلة</string>
+    <string name="title_activity_mosque">MosqueActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Menu-->
+
+    <!-- LogIn SharedPrefrencess -->
+
+    <string name="login_preferences">com.masajid.kacst.monirah.masjid_shared_preferences_LogIn</string>
+    <string name="login_status_preferences">com.masajid.kacst.monirah.masjid_shared_preferences_status</string>
+
+    <!-- Mosque Map-->
+
+    <string name="Tag_name">إسم المسجد</string>
+    <string name="Null">  </string>
+
+    <string name="NoImage">لا تتوفر صور لهذا المسجد</string>
+
+    <!-- SEARCH -->
+    <string name="search_view">بحث</string>
+    <string name="search_hint">أدخل كلمة البحث</string>
+    <string name="title_activity_favorite">المفضله </string>
+    <string name="AddNewNote">إضافة ملاحظه جديدة</string>
+    <!--Favorite -->
+
+    <string name="Favorite">لم تقم بتسجيل الدخول</string>
+    <string name="search_Button">بحث</string>
+    <string name="Exit_Button">الغاء</string>
+    <string name="Ok_Button">موافق</string>
+    <string name="notification">الرجاء تسجيل الدخول لتتمكن من ارسال ملاحظة</string>
+
+
+    <!-- Monirah -->
+    <string name="search">أدخل كلمة البحث</string>
+    <string name="mosqueName">إسم المسجد</string>
+    <string name="Text_name_Tag">إسم المسجد</string>
+    <string name="Text_name">  </string>
+    <string name="Back">الرجوع</string>
+    <string name="MosqueInfo">معلومات المسجد</string>
+    <string name="MosqueDistrict">الحي</string>
+    <string name="MosqueImage">صورة المسجد</string>
+    <string name="MosqueType">فئه المسجد</string>
+    <string name="District">الحي</string>
+    <string name="MosqueRegion">المنطقة</string>
+    <string name="CityVillage">المدينة</string>
+    <string name="ImamName">إسم الإمام </string>
+    <string name="MoathenName">إسم المؤذن</string>
+    <string name="KhateebName"> إسم الخطيب</string>
+    <string name="ObserverName"> إسم المراقب </string>
+    <string name="StreetName">إسم الشارع</string>
+    <string name="MosqueDistance">المسافة</string>
+    <string name="DawaTitle">عنوان المنشط </string>
+
+
+    <!--Advance search-->
+    <string name="Search_Filter">تصفية البحث</string>
+
+    <string name="open"> فتح</string>
+    <string name="close">اغلاق</string>
+    <string name="logo">شعار</string>
+    <string name="kateebName">أدخل إسم الخطيب</string>
+    <string name="InsertImamName">أدخل إسم الإمام</string>
+    <string name="enter_date">Enter Date</string>
+    <string name="ActivityName">أدخل عنوان المنشط</string>
+    <string name="InsertMosqueName">أدخل إسم المسجد</string>
+
+
+
+    <string name="Email">   البريد الإلكتروني \n\n   info@moia.gov.sa </string>
+    <string name="Email_Address">    البريد الإلكتروني </string>
+    <string name="Telephone">الهاتف   \n\n  00966–11-223-6222</string>
+    <string name="Location">العنوان  \n \n  المملكة العربية السعودية - الرياض  \n طريق الملك فهد بجوار برج الفيصلية  \n الرمز البريدي: 11232</string>
+
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="0.5dp"
+    android:id="@+id/ImageInfo"
+    android:orientation="vertical"
+    android:background="@color/lightGry">
+
+    <com.github.siyamed.shapeimageview.RoundedImageView
+        android:id="@+id/Mosqueimage"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        app:siRadius="6dp"
+        app:siBorderWidth="2dp"
+        app:siBorderColor="@color/grey"
+        app:siSquare="true"/>
+
+
+    <TextView
+        android:id="@+id/NoImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
