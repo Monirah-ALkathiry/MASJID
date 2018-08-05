@@ -30,7 +30,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.1'
     //noinspection GradleCompatible
@@ -48,32 +47,37 @@ dependencies {
 
 
     implementation 'com.android.support:recyclerview-v7:27.1.1'
-    compile 'com.android.support:cardview-v7:27.1.1'
+    //-----------------
+    implementation 'com.android.support:cardview-v7:27.1.1'
 
     implementation 'com.android.support:cardview-v7:27.1.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    //-------------
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation files('libs/jsoup-1.11.2.jar')
 
-
+//----------------6-----------
     //Google Map Marker:
     //noinspection GradleDynamicVersion
-    compile 'com.google.maps.android:android-maps-utils:0.5+'
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
     //searchablespinnerlibrary
-    compile 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
+    implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
 
     //Dialog
-    compile 'com.github.d-max:spots-dialog:0.7@aar'
+    implementation 'com.github.d-max:spots-dialog:0.7@aar'
+
 
     //Image On Mosque List
-    compile 'com.github.siyamed:android-shape-imageview:0.9.3@aar'
+    implementation 'com.github.siyamed:android-shape-imageview:0.9.3@aar'
 
 
 
-    compile 'net.alhazmy13.hijridatepicker:library:2.0.2'
+    implementation 'net.alhazmy13.hijridatepicker:library:2.0.2'
 
-    compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
 
     implementation 'com.basgeekball:awesome-validation:2.0'
-    compile 'com.google.android.gms:play-services-location:15.0.1'
 
+    //------------
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 }

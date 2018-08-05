@@ -3,7 +3,6 @@ package com.masajid.kacst.monirah.masjid.Utils.Mosque;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.InflateException;
@@ -32,13 +30,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.MarkerManager;
 import com.masajid.kacst.monirah.masjid.R;
 import com.masajid.kacst.monirah.masjid.Utils.APIConnection.ApiRetrofitClint;
 import com.masajid.kacst.monirah.masjid.Utils.AppNavigationDrawer;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication.FirstFragmentListenerMAP;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication.FragmentCommunicator;
-import com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication.MosquesLatLngClint;
+import com.masajid.kacst.monirah.masjid.Utils.APIConnection.MosquesLatLngClint;
 
 import java.util.List;
 
@@ -145,6 +142,7 @@ public class MosqueMap extends Fragment implements OnMapReadyCallback
         super.onAttach(context);
 
         if(context instanceof FirstFragmentListenerMAP){
+
             firstFragmentListenerMAP = (FirstFragmentListenerMAP)context;
         }
     }
@@ -186,7 +184,11 @@ public class MosqueMap extends Fragment implements OnMapReadyCallback
         //TODO: Update lis :
         //ToDO: Search ANd Advance search
 
-       ((AppNavigationDrawer) getActivity()).passVal(new FragmentCommunicator() {
+        assert ((AppNavigationDrawer) getActivity()) != null;
+        AppNavigationDrawer myActivity = (AppNavigationDrawer)getContext();
+
+
+        (myActivity).passVal(new FragmentCommunicator() {
             @Override
             public void passData(List<MosquesLatLng> mosquesLatLngs) {
                 NewmosquesLatLngs = mosquesLatLngs;
@@ -329,6 +331,8 @@ public class MosqueMap extends Fragment implements OnMapReadyCallback
         Newlat = lat;
         Newlon = lon;
 
+        //TODO: Change API Connection parameters
+
         //Make A Connection With API :
         mosquesLatLngClint = ApiRetrofitClint.getApiRetrofitClint().create(MosquesLatLngClint.class);
         //Call Function form Inter Face And Send Parameter to it
@@ -360,12 +364,15 @@ public class MosqueMap extends Fragment implements OnMapReadyCallback
                       System.out.println("Size Is onResponce :----" + mosquesLatLngs.size());
                     //-----------------------------------------------------------------------
 
-                    //firstFragmentListenerMAP.sendData(mosquesLatLngs);
-                   addMoreMarker(mosquesLatLngs);
+                    firstFragmentListenerMAP.sendData(mosquesLatLngs);
+                    addMoreMarker(mosquesLatLngs);
+
 
                     //System.out.println("Size Is onResponce :----" + mosquesLatLngs.size());
                 } else {
 
+                    System.out.println("No connection:----" );
+                    //Toast.makeText(getContext(),"No data",Toast.LENGTH_LONG).show();
 
                 }
 
@@ -487,8 +494,9 @@ public class MosqueMap extends Fragment implements OnMapReadyCallback
 
                         MosqueInformationActivity fragobj = new MosqueInformationActivity();
                         fragobj.setArguments(intent);
-                       // MosqueInformationActivity newGamefragment = new MosqueInformationActivity();
-                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager()
+
+                        FragmentTransaction fragmentTransaction = getActivity()
+                                .getSupportFragmentManager()
                                 .beginTransaction();
                         fragmentTransaction.replace(R.id.container, fragobj);
                         fragmentTransaction.addToBackStack(null);

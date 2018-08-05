@@ -1,4 +1,4 @@
-package com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication;
+package com.masajid.kacst.monirah.masjid.Utils.APIConnection;
 
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosquesLatLng;
 

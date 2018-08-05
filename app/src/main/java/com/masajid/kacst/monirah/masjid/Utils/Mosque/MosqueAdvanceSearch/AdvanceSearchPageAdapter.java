@@ -1,4 +1,4 @@
-package com.masajid.kacst.monirah.masjid.Utils.Mosque;
+package com.masajid.kacst.monirah.masjid.Utils.Mosque.MosqueAdvanceSearch;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -39,6 +39,7 @@ public class AdvanceSearchPageAdapter extends FragmentPagerAdapter {
         //return Page Title
         return mFragmentTitle.get(position);
     }
+
 
     @Override
     public Fragment getItem(int position) {

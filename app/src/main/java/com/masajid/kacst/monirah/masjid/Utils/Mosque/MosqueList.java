@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.masajid.kacst.monirah.masjid.R;
 import com.masajid.kacst.monirah.masjid.Utils.APIConnection.ApiRetrofitClint;
-import com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication.MosquesLatLngClint;
+import com.masajid.kacst.monirah.masjid.Utils.APIConnection.MosquesLatLngClint;
 
 import java.util.List;
 
@@ -85,7 +85,8 @@ public class MosqueList extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container
+            , @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_mosque_list,container,false);
 
@@ -96,7 +97,18 @@ public class MosqueList extends Fragment {
         Slatitude= Double.toString(latitude);
         Slongitude= Double.toString(longitude);
 
-//Recycler View
+
+        return view;
+    }
+
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        //Recycler View
         recyclerView = (RecyclerView) view.findViewById(R.id.MosqueRecyclerView);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -104,7 +116,6 @@ public class MosqueList extends Fragment {
 
         ConnectWithAPI(Slatitude,Slongitude);
 
-        return view;
     }
 
     public void ConnectWithAPI(String latitude , String longitude){

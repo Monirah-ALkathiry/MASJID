@@ -1,40 +1,56 @@
 package com.masajid.kacst.monirah.masjid.Utils.Mosque;
 
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.masajid.kacst.monirah.masjid.R;
 import com.masajid.kacst.monirah.masjid.Utils.AppNavigationDrawer;
+import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosqueInformationActivity;
+import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosquesLatLng;
 import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+
 import java.io.IOException;
 import java.util.List;
 
+import android.app.ProgressDialog;
+
 import dmax.dialog.SpotsDialog;
 
-/**
- * Created by Monirah on 7/25/2018.
- */
 
+/**
+ * Created by Monirah on 14/12/17.
+ */
+//Used In Fragment to View List Information As Card View
 public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.MosqueViewList> {
 
     private List<MosquesLatLng> mosquesLatLngs;
@@ -47,6 +63,9 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
     String data;
     private Context context;
 
+    private  View view;
+
+
     //constructor
     public MosqueListAdapter(Context context, List<MosquesLatLng> latLngs, double lat , double log) {
 
@@ -54,7 +73,6 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
         this.mosquesLatLngs = latLngs;
         this.lat =lat;
         this.log=log;
-
 
     }
 
@@ -69,7 +87,7 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
     @Override
     public MosqueViewList onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_mosque_item, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_mosque_item, parent, false);
         //Mosque Code :
 
         return new MosqueViewList(view);
@@ -81,7 +99,6 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
     public void onBindViewHolder(final MosqueViewList holder, final int position) {
 
 
-
         holder.MosqueCode = (mosquesLatLngs.get(position).getCode());
         //System.out.println(holder.imageView + " holder.imageView ");
 
@@ -91,7 +108,7 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
         holder.InfoTextView.setText(mosquesLatLngs.get(position).getCityVillage());
         holder.MosqueDistrict.setText(mosquesLatLngs.get(position).getDistrict());
         //-----------------------------Calc Distance --------------------------------
-//Location Distance :
+        //Location Distance :
         Location locationA = new Location("point A");
         Location locationB = new Location("point B");
         //Used To calc Distance:
@@ -100,7 +117,7 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
 
         String latAPI= mosquesLatLngs.get(position).getLatitude();
         String logAPI= mosquesLatLngs.get(position).getLongitude();
-        //  System.out.println(" Distance is :) :) :0  ******* " + logAPI  + "\n d by meeter :" +latAPI + "\n In Kilo **********: " );
+        //System.out.println(" Distance is :) :) :0  ******* " + logAPI  + "\n d by meeter :" +latAPI + "\n In Kilo **********: " );
 
         latd=Double.parseDouble(latAPI);
         logd= Double.parseDouble(logAPI);
@@ -148,25 +165,23 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
                 intent.putString("MOATHEN_NAME", mosquesLatLngs.get(position).getMoathenName());
                 intent.putString("OBSERVER_NAME", mosquesLatLngs.get(position).getObserverName());
 
+                //context.startActivity(intent);
+
                 MosqueInformationActivity fragobj = new MosqueInformationActivity();
-               fragobj.setArguments(intent);
-
-               // fragobj.startActivity(intent);
-               // context.startActivity(intent);
-                //Test
+                fragobj.setArguments(intent);
 
 
+                AppNavigationDrawer myActivity = (AppNavigationDrawer) context;
+                FragmentTransaction fragmentTransaction = myActivity
+                        .getSupportFragmentManager().beginTransaction();
 
-               // MosqueInformationActivity newGamefragment = new MosqueInformationActivity();
-                FragmentTransaction fragmentTransaction = ((AppNavigationDrawer) context).getSupportFragmentManager().beginTransaction();
-
-
-              //  FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager()
-                       // .beginTransaction();
                 fragmentTransaction.replace(R.id.container, fragobj);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
+
+
+                //Test
             }
         });
 
@@ -188,12 +203,12 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
 
 //-----------------------------------------------------------------------------------------------------
 
-    class ParseHTML extends AsyncTask<String,Void,String> {
+    class ParseHTML extends AsyncTask<String,Void,String>{
 
         private Document doc = null;
         private String a;
         private String CodNumber;
-        private ImageView imageView;
+        private  ImageView imageView;
         private SpotsDialog mProgressDialog;
         private String imgurl;
         private Elements links;
@@ -212,6 +227,32 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
             super.onPreExecute();
 
 
+/*
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+         }
+        else {
+
+         mProgressDialog = new SpotsDialog(context,R.style.Progress_Dialog);
+
+            // Set progress style horizontal
+           // mProgressDialog.setProgressStyle(R.style.Progress_Dialog);
+
+
+           // mProgressDialog.setIndeterminate(false);
+            mProgressDialog.show();
+
+           // mProgressDialog.setTitle("جاري التحميل");
+            //mProgressDialog.setMessage("جاري التحميل");
+            // Set the progress dialog background color
+            // mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.YELLOW));
+
+            // Make the progress dialog cancellable
+            // mProgressDialog.setCancelable(true);
+
+
+        }
+            */
 
             super.onPreExecute();
 
@@ -227,9 +268,11 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
                         .userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0")
                         .referrer("http://www.google.com")
                         .get();
+                //  Log.d("EXAMPLE " , doc.toString());
                 links = doc.getElementsByTag("a");
 
-
+                //Log.d("EXAMPLE " , CodNumber);
+                // System.out.print("Array Size :" + links.size() + "\n");
 
                 if(links.size()>=2) {
                     if (links.get(1).attr("href").endsWith(".JPG")) {
@@ -241,8 +284,18 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
                     a = String.valueOf(R.drawable.ic_mosque);
                 }
 
+               /* Log.d("Elements ",links.toString());
+                Log.d("Elements 222 ",links.get(1).attr("href"));
 
+                a = links.get(1).attr("href");
+                System.out.print(a + " New Link");
+                Log.d("Elements aaaaa:  ",a);
+                */
                 imgurl= "http://gis.moia.gov.sa/"+a;
+// Download image from URL
+                //InputStream input = new java.net.URL(imgurl).openStream();
+                // Decode Bitmap
+                // bitmap = BitmapFactory.decodeStream(input);
 
             } catch (IOException e) {
                 builder.append("Error :( :(")
@@ -250,7 +303,6 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
                         .append("\n");
                 //e.printStackTrace();
             }
-
 
             return "Execute";
 
@@ -323,7 +375,7 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
         private String MosqueCode;//Form API To IMAGE VIEW
 
 
-        public MosqueViewList(View view) {
+        MosqueViewList(View view) {
             super(view);
             mTextView = (TextView) view.findViewById(R.id.MosqueName);
             InfoTextView = (TextView) view.findViewById(R.id.MosqueInfo);
@@ -344,4 +396,77 @@ public class MosqueListAdapter extends RecyclerView.Adapter<MosqueListAdapter.Mo
 
     }//end Inner Class
 }// Mian Class
+//------------------------------------------------------------------------------------------------------
+
+// String NewURL = extractImageUrl("http://gis.moia.gov.sa/Mosques/Content/images/mosques/"+holder.MosqueCode+"/");
+//System.out.println("NewURL : "  + NewURL +"\n\n\n");
+//
+
+       /* new Thread(new Runnable() {
+            Bitmap bitmap;
+
+            Document doc = null;
+            @Override
+            public void run() {
+
+                final StringBuilder builder = new StringBuilder();
+
+                try {
+
+                     doc = Jsoup.connect("http://gis.moia.gov.sa/Mosques/Content/images/mosques/"+holder.MosqueCode).get();
+
+                } catch (IOException e) {
+                    builder.append("Error :( :(")
+                            .append(e.getMessage())
+                            .append("\n");
+                    //e.printStackTrace();
+                }
+
+                Elements links = doc.getElementsByTag("a");
+
+                String title = doc.title();
+                Elements img= doc.select("a");
+
+
+                builder.append(title).append("\n");
+
+                // Log.d("Code" ,"Link : " +links.get(2).attr("href"));
+
+                System.out.println("Convert to String "+ builder );
+                builder.append("\n").append("Link: ")
+                        .append(links.attr("href"))
+                        .append("\n")
+                        .append("Text: ")
+                        .append("\n")
+                        .append(links.text());
+                System.out.println("LINKS "+ links );
+                System.out.println(links.get(1).attr("href") + " FIRST IMG");//Get Link IMage Name
+
+
+                holder.url=links.get(1).attr("href");
+                System.out.println(holder.url + " TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTRRRRRRRRRRRRRRRRRR \n\n\n\n\n\n");
+                System.out.println("NEW \n\n "+  builder.append("\n").append("Link: ")
+                        .append(links.attr("href"))
+                        .append("\n")
+                        .append("Text: ")//Get Image Name
+                        .append("\n")
+                        .append(links.text()));
+
+                StringBuilder i = builder.append(links.text());
+                System.out.println("NEW \n\n  ffff : "+  i+" New I ");
+
+                System.out.println(builder +"\n BILDER 77777777770000000000000000000000000000000000000000000000");
+                System.out.println("  Test After Thred  eeeeeeeeeeeeeeee");
+                Picasso.with(context)
+                        .load("http://gis.moia.gov.sa/"+holder.url)
+                        .placeholder(R.drawable.mosqueicon)
+                        .into(tets);
+            }
+
+
+        }).start();
+        */
+
+//------------------------------------------------------------------------------------
+
 

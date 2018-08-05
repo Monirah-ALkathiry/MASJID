@@ -17,10 +17,12 @@ import android.test.mock.MockPackageManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.masajid.kacst.monirah.masjid.R;
+import com.masajid.kacst.monirah.masjid.Utils.AppNavigationDrawer;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication.FirstFragmentListenerMAP;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication.FragmentCommunicator;
 import com.masajid.kacst.monirah.masjid.Utils.Utils.GPSTracker;
@@ -31,7 +33,8 @@ import java.util.List;
 public class MosqueActivity extends Fragment implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener
-         {
+
+{
 
 
     public static final String TAG = "MosqueActivity";
@@ -124,6 +127,9 @@ public class MosqueActivity extends Fragment implements
             latitude = gps.getLatitude();
             longitude = gps.getLongitude();
 
+
+            Toast.makeText(getContext(),latitude+"/n"+longitude,Toast.LENGTH_LONG).show();
+
         } else {
             // can't get location
             // GPS or Network is not enabled
@@ -144,8 +150,6 @@ public class MosqueActivity extends Fragment implements
         //MAP
         intentThatCalled = getActivity().getIntent();
 
-
-
     }
 
     public void setupViewPager(ViewPager viewPager){
@@ -162,17 +166,17 @@ public class MosqueActivity extends Fragment implements
 
     }
 
-    @Override
-    public void onConnectionSuspended(int i) {
+        @Override
+        public void onConnectionSuspended(int i) {
 
-    }
+        }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+     @Override
+        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
+        }
 
-
-
+    //---------------------------------------------------------
+    //-----------------------------------------------------------
 
 }

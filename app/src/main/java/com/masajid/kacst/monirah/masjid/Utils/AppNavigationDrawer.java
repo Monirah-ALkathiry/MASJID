@@ -29,10 +29,12 @@ import com.masajid.kacst.monirah.masjid.Utils.APIConnection.AdvanceSearchClint;
 import com.masajid.kacst.monirah.masjid.Utils.APIConnection.ApiRetrofitClint;
 import com.masajid.kacst.monirah.masjid.Utils.APIConnection.SearchRequest;
 import com.masajid.kacst.monirah.masjid.Utils.Dawa.DawaActivity;
-import com.masajid.kacst.monirah.masjid.Utils.Mosque.AdvanceSearch;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication.FirstFragmentListenerMAP;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.Communication.FragmentCommunicator;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosqueActivity;
+import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosqueAdvanceSearch.AdvanceSearch;
+import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosqueInformationActivity;
+import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosqueList;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosqueListAdapter;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosqueMap;
 import com.masajid.kacst.monirah.masjid.Utils.Mosque.MosquesLatLng;
@@ -47,9 +49,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
+//TODO: Check network connection
+//ToDo : GPS
+
+
 public class AppNavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
-    ,FirstFragmentListenerMAP
+             ,FirstFragmentListenerMAP
  {
 
     private Toolbar toolbar;
@@ -76,41 +82,14 @@ public class AppNavigationDrawer extends AppCompatActivity
      //Used To Update Map_Marker
      public FragmentCommunicator fragmentCommunicator;
      //-------------------------------------
-
+     private ActionBarDrawerToggle actionBarDrawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_navigation_drawer);
 
-         toolbar = (Toolbar) findViewById(R.id.toolbar);
-         setSupportActionBar(toolbar);
 
-
-
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        /*check the drawer view is currently open or not
-         boolean isOpen = drawer.isDrawerOpen(GravityCompat.END);
-        Toast.makeText(this,String.valueOf(isOpen) ,Toast.LENGTH_LONG).show();
-         */
-
-        //Make Mosque Activity Default Activity
-        if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new MosqueActivity()).commit();
-
-        }
-
-
-       //LOCATION:
+        //LOCATION:
 
         try {
             if (ActivityCompat.checkSelfPermission(this, mPermission)
@@ -133,17 +112,50 @@ public class AppNavigationDrawer extends AppCompatActivity
         // check if GPS enabled
         if(gps.canGetLocation()){
 
-             latitude = gps.getLatitude();
-             longitude = gps.getLongitude();
+            latitude = gps.getLatitude();
+            longitude = gps.getLongitude();
 
-                       // Toast.makeText(getApplicationContext(), "Your Location is - \nLat: "
-             //       + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: "
+                    + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+
         }else{
             // can't get location
             // GPS or Network is not enabled
             // Ask user to enable GPS/network in settings
             gps.showSettingsAlert();
         }
+
+
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
+         setSupportActionBar(toolbar);
+
+
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this, drawer,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+
+        drawer.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        /*check the drawer view is currently open or not
+         boolean isOpen = drawer.isDrawerOpen(GravityCompat.END);
+        Toast.makeText(this,String.valueOf(isOpen) ,Toast.LENGTH_LONG).show();
+         */
+
+        //Make Mosque Activity Default Activity
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new MosqueActivity()).commit();
+
+        }
+
+
+
 
 //------------------------------------------
     }
@@ -235,6 +247,7 @@ public class AppNavigationDrawer extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -258,6 +271,14 @@ public class AppNavigationDrawer extends AppCompatActivity
             return true;
         }
 
+
+        if (id == R.id.Refresh) {
+
+            Intent Refreshintent = getIntent();
+            finish();
+            startActivity(Refreshintent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -318,14 +339,14 @@ public class AppNavigationDrawer extends AppCompatActivity
                      double lonNew = Double.parseDouble(Newlongitude);
 
 
-                   //  recyclerView = (RecyclerView) findViewById(R.id.MosqueRecyclerView);
-                   //  layoutManager = new LinearLayoutManager(MosqueActivity.this);
-                   //  recyclerView.setLayoutManager(layoutManager);
-                   //  recyclerView.setHasFixedSize(true);
+                    recyclerView = (RecyclerView) findViewById(R.id.MosqueRecyclerView);
+                     layoutManager = new LinearLayoutManager(AppNavigationDrawer.this);
+                     recyclerView.setLayoutManager(layoutManager);
+                     recyclerView.setHasFixedSize(true);
 
-                     //adapter = new MosqueListAdapter(MosqueActivity.this, mosquesLatLngs, latNew, lonNew);
+                     adapter = new MosqueListAdapter(AppNavigationDrawer.this, mosquesLatLngs, latNew, lonNew);
 //
-                   //  recyclerView.setAdapter(adapter);
+                    recyclerView.setAdapter(adapter);
 
                      //Map -----
                      fragmentCommunicator.passData(mosquesLatLngs);
@@ -345,7 +366,8 @@ public class AppNavigationDrawer extends AppCompatActivity
 
      //Here is new method-----------------------------------------------------
      public void passVal(FragmentCommunicator fragmentCommunicator) {
-         this.fragmentCommunicator = fragmentCommunicator;
+
+        this.fragmentCommunicator = fragmentCommunicator;
 
      }
 
@@ -356,19 +378,36 @@ public class AppNavigationDrawer extends AppCompatActivity
      //Recycle View (Mosque List)
      private RecyclerView recyclerView;
      private RecyclerView.LayoutManager layoutManager;
+    // final LinearLayoutManager layoutManager = new LinearLayoutManager(context);
 
 
      //send Data TO List -------------Idle------------------------
+     //TODO:Update Mosque list
      @Override
      public void sendData(List<MosquesLatLng> newData) {
-         recyclerView = (RecyclerView) findViewById(R.id.MosqueRecyclerView);
 
-         layoutManager = new LinearLayoutManager(AppNavigationDrawer.this);
-         recyclerView.setLayoutManager(layoutManager);
-         recyclerView.setHasFixedSize(true);
+        if(newData.size() >0) {
+           // Toast.makeText(this, "New Data /n", Toast.LENGTH_LONG).show();
 
-         adapter = new MosqueListAdapter(this, newData);
-         recyclerView.setAdapter(adapter);
+
+
+            /*
+            recyclerView = (RecyclerView) findViewById(R.id.MosqueRecyclerView);
+
+            layoutManager = new LinearLayoutManager(AppNavigationDrawer.this);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(true);
+
+            adapter = new MosqueListAdapter(this, newData);
+            recyclerView.setAdapter(adapter);
+            */
+
+        }else {
+
+            Toast.makeText(this, "there is no data "
+                    , Toast.LENGTH_LONG).show();
+        }
+
      }
 
      //------------------------Drawer------------------------------
@@ -461,8 +500,7 @@ public class AppNavigationDrawer extends AppCompatActivity
                // context.startActivity(intent4);
                 break;
 
-            default:
-                return true;
+
         }
 
 

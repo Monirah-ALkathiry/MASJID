@@ -82,7 +82,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:layout_weight="1"
-                    />
+                    tools:targetApi="m" />
 
                 <TextView
                     android:id="@+id/Distance"
@@ -102,6 +102,7 @@
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

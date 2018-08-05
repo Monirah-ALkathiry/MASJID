@@ -100,6 +100,7 @@ public class MosqueSearch extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                          @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.mosque_search,container,false);
 
         SearchView = getActivity().findViewById(R.id.search);
@@ -116,7 +117,7 @@ public class MosqueSearch extends Fragment {
         textView.setText("");
 
 //-----------------------------------------------------------
-        spinner = (SearchableSpinner) view.findViewById(R.id.myspinner);
+    /*    spinner = (SearchableSpinner) view.findViewById(R.id.myspinner);
         spinnerCities = (SearchableSpinner) view.findViewById(R.id.spinnerCities);
         spinnerDistricts = (SearchableSpinner) view.findViewById(R.id.spinnerDistricts);
         spinnerMosque = (SearchableSpinner) view.findViewById(R.id.spinnerMosque);
@@ -152,7 +153,7 @@ public class MosqueSearch extends Fragment {
                 String RejionID2;
                 RejionID2 = getRijonID(Regions);
 
-                //----------------------Cities -----------------
+      //----------------------Cities -----------------
                 Cities.clear();
                 loadJSONFromAssetCities(RejionID2);
                 System.out.println("--------------------RejionID---------------------------" + RejionID2);
@@ -260,7 +261,7 @@ public class MosqueSearch extends Fragment {
             }
 
         });
-
+        */
 
         return view;
 
@@ -284,7 +285,7 @@ public class MosqueSearch extends Fragment {
         System.out.println("\n :::: )  "+lat + " : lat \n lone : " +lon);
         System.out.println("\n test : " + query +"\n");
 
-        textView.setOnClickListener(new View.OnClickListener() {
+      /*  textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 query = textView.getText().toString();
@@ -373,7 +374,7 @@ public class MosqueSearch extends Fragment {
             }
         });
 
-
+        */
 
 
     }
